@@ -6,4 +6,4 @@ Terraform and AWS CLI installed docker image based on NodeJS environment
 
 This Docker image is intended for use with [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) and [AWS CodeBuild](https://aws.amazon.com/codebuild).
 
-This image is based on node:16-alpine and has Terraform 1.2.2, the AWS CLI and Yarn installed (see Dockerfile for all other installed utilities).
+This image is based on node:16-alpine and has Terraform 1.2.8, the AWS CLI and Yarn installed (see Dockerfile for all other installed utilities).
