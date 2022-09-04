@@ -2,7 +2,7 @@ FROM node:16-alpine
 
 LABEL image.namespace="floydocker" \
   image.id="node-terraform-aws" \
-  version="2.1.0" \
+  version="2.1.1" \
   maintainer.name="Victor Korzunin" \
   description="Docker Image with Node.js 16, Terraform 1.2.8 and AWS"
 
