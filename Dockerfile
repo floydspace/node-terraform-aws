@@ -2,12 +2,13 @@ FROM node:16-alpine3.13
 
 LABEL image.namespace="floydocker" \
   image.id="node-terraform-aws" \
-  version="2.2.2" \
+  version="2.2.3" \
   maintainer.name="Victor Korzunin" \
   description="Docker Image with Node.js 16, Python 3.8, Terraform 1.3.8 and AWS"
 
 RUN apk add --no-cache \
   python3 \
+  python3-dev \
   py-pip \
   py-setuptools \
   ca-certificates \
@@ -18,7 +19,12 @@ RUN apk add --no-cache \
   curl \
   jq \
   git \
-  zip && \
+  zip \
+  make \
+  automake \
+  gcc \
+  g++ \
+  subversion && \
   # https://stackoverflow.com/a/64132959
   pip install --ignore-installed distlib && \
   pip install --no-cache-dir --upgrade pip pipenv awscli && \
