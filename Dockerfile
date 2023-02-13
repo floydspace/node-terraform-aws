@@ -24,8 +24,6 @@ RUN apk add --no-cache \
   pip install --no-cache-dir --upgrade pip pipenv awscli && \
   aws configure set preview.cloudfront true
 
-RUN ln -s /usr/bin/python3 /usr/bin/python
-
 ENV TERRAFORM_VERSION 1.3.8
 
 RUN wget -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
