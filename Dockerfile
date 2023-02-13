@@ -19,6 +19,8 @@ RUN apk add --no-cache \
   jq \
   git \
   zip && \
+  # https://stackoverflow.com/a/64132959
+  pip install --ignore-installed distlib && \
   pip install --no-cache-dir --upgrade pip pipenv awscli && \
   aws configure set preview.cloudfront true
 
