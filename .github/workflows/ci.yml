@@ -22,5 +22,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            floydocker/node-terraform-aws:latest
-            floydocker/node-terraform-aws:2.2.3
+            floydocker/node-terraform-aws:python3.8-node18-tf1.4
+          # tags: |
+          #   floydocker/node-terraform-aws:latest
+          #   floydocker/node-terraform-aws:2.2.3

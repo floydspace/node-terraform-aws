@@ -1,41 +1,23 @@
-FROM node:16-alpine3.13
+FROM cimg/python:3.8.16-node
 
 LABEL image.namespace="floydocker" \
   image.id="node-terraform-aws" \
-  version="2.2.3" \
+  version="python3.8-node18-tf1.4" \
   maintainer.name="Victor Korzunin" \
-  description="Docker Image with Node.js 16, Python 3.8, Terraform 1.3.8 and AWS"
+  description="Docker Image with Node.js 18, Python 3.8, Terraform 1.4.5 and AWS"
 
-RUN apk add --no-cache \
-  python3 \
-  python3-dev \
-  py-pip \
-  py-setuptools \
-  ca-certificates \
-  openssl \
-  groff \
-  less \
-  bash \
-  curl \
-  jq \
-  git \
-  zip \
-  make \
-  automake \
-  gcc \
-  g++ \
-  subversion && \
-  # https://stackoverflow.com/a/64132959
-  pip install --ignore-installed distlib && \
-  pip install --no-cache-dir --upgrade pip pipenv awscli && \
-  aws configure set preview.cloudfront true
+# MongoMemoryServer requires libcrypto.so.1.1, see https://github.com/nodkz/mongodb-memory-server/issues/480#issuecomment-1580929829
+RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+RUN sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 
-RUN ln -s /usr/bin/python3 /usr/bin/python
+# Install AWS CLI
+RUN pip install awscli && \
+  aws --version
 
-ENV TERRAFORM_VERSION 1.3.8
-
+# Install Terraform
+ENV TERRAFORM_VERSION 1.4.5
 RUN wget -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
-  unzip terraform.zip -d /usr/local/bin && \
+  sudo unzip terraform.zip -d /usr/local/bin && \
   rm -f terraform.zip
 
 ENTRYPOINT ["/bin/bash", "-c"]
