@@ -9,6 +9,7 @@ LABEL image.namespace="floydocker" \
 # MongoMemoryServer requires libcrypto.so.1.1, see https://github.com/nodkz/mongodb-memory-server/issues/480#issuecomment-1580929829
 RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 RUN sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+RUN rm libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 
 # Install AWS CLI
 RUN pip install awscli && \
